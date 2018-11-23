@@ -33,7 +33,8 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 
 		setBackground(Color.black);
 
-		ship = new Ship(310,450,5);
+//y- too fast and choppy- 		ship = new Ship(310,450,5);
+		ship = new Ship(310,450,1);
 
 		horde = new AlienHorde(20);
 
