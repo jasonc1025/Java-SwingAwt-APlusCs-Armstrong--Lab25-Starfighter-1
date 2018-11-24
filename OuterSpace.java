@@ -2,12 +2,11 @@
 //www.apluscompsci.com
 //Name -
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.text.DecimalFormat;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,7 +15,8 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 
 //y- too fast and choppy- 		ship = new Sprite_MovableYes_CollidableYes_Cl(310,450,5);
 //y- 	private Sprite_MovableYes_CollidableYes_Cl ship = new Sprite_MovableYes_CollidableYes_Cl(310,450,1);
-	private Sprite_MovableYes_CollidableYes_Cl ship = new Sprite_MovableYes_CollidableYes_Cl( "/images/ship.jpg", 310, 450, 50, 50, 1);
+    // * Speed was '1'
+	private Sprite_MovableYes_CollidableYes_Cl ship = new Sprite_MovableYes_CollidableYes_Cl( "/images/ship.jpg", (int)(StarFighter.WIDTH * 0.50), (int)(StarFighter.HEIGHT * 0.80),100,100,2);
 
     private AlienHorde horde;
 	private Bullets shots;
@@ -46,7 +46,7 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 
 		setBackground(Color.black);
 
-		horde = new AlienHorde(20);
+		horde = new AlienHorde(100);
 
 		shots = new Bullets();
 
@@ -83,7 +83,7 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 		//take a snap shop of the current screen and same it as an image
 		//that is the exact same width and height as the current screen
 		if(back==null){
-			StarFighter.HEIGHT = this.getHeight();
+		  StarFighter.HEIGHT = this.getHeight();
 	      StarFighter.WIDTH = this.getWidth();
 	      //System.out.println(StarFighter.WIDTH);
 		   back = (BufferedImage)(createImage(this.getWidth(),this.getHeight()));
@@ -93,10 +93,15 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
 
-		graphToBack.setColor(Color.BLUE);
-		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,this.getWidth(),this.getHeight());
+        graphToBack.setColor(Color.WHITE);
+        graphToBack.setFont(new Font("Dialog", Font.PLAIN, 48));
+        graphToBack.drawString("StarFighter ", 50, 50 );
+        //y- graphToBack.drawString( "> FPS: " + String.valueOf(gameCycle_Fps_NanoSec), 50, 100 );
+        DecimalFormat dfTemp = new DecimalFormat("000");
+        graphToBack.drawString( "> FPS: " + dfTemp.format(gameCycle_Fps_NanoSec), 50, 100 );
+
 
 		if(keys[0] == true)
 		{
@@ -121,7 +126,13 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 		if( (keys[4] == true) && ( gameCycle_Curr_NanoSec - gameCycle_Projectile_Prev_NanoSec > (1.0/gameCycle_Projectile_Per_Sec * Math.pow(10,9)) ) )
 		{
 			//y- shots.add(new Sprite_MovableYes_CollidableYes_Cl(ship.getX()+ship.getWidth()/2-5, ship.getY(), 10, 10, 5));
-			shots.add(new Sprite_MovableYes_CollidableYes_Cl( "/images/Circle-Green-20x20.png",ship.getX()+ship.getWidth()/2-5, ship.getY(), 10, 10, 5));
+            Sprite_MovableYes_CollidableYes_Cl missileTemp = new Sprite_MovableYes_CollidableYes_Cl("/images/Circle-Green-20x20.png");
+            //y- shots.add(new Sprite_MovableYes_CollidableYes_Cl( "/images/Circle-Green-20x20.png",ship.getX()+ship.getWidth()/2-10, ship.getY()-10, 5));
+            missileTemp.setImageSize(10,10);
+            missileTemp.setPos(ship.getX()+ship.getWidth()/2-(missileTemp.getWidth()/2),ship.getY()-(missileTemp.getHeight()/2));
+            missileTemp.setSpeed(5);
+            //y shots.add(new Sprite_MovableYes_CollidableYes_Cl( "/images/Circle-Green-20x20.png",ship.getX()+ship.getWidth()/2-10, ship.getY()-10, 5));
+            shots.add(missileTemp);
 			//y turn off to allow continuous fire- keys[4] = false;
             gameCycle_Projectile_Prev_NanoSec = gameCycle_Curr_NanoSec;
 		}
@@ -130,10 +141,9 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 		shots.draw(graphToBack);
 
 		ship.draw(graphToBack);
+
 		horde.move();
 		horde.draw(graphToBack);
-
-
 
 		//collision detection
 		shots.cleanEmUp();

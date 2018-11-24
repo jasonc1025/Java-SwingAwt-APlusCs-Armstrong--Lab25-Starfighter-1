@@ -17,14 +17,17 @@ public class AlienHorde
 		int y = 50;
 		for( int i = 0; i < size; i++)
 		{
+//y- 			aliens.add( new Sprite_MovableYes_CollidableYes_Cl("/images/alien.jpg", x, y,35,35,1) );
+			aliens.add( new Sprite_MovableYes_CollidableYes_Cl("/images/alien.jpg", x, y, 100, 100, 1) );
 			if( x > StarFighter.WIDTH - 50)
 			{
 				x = 25;
-				y += 75;
+				//y- y += 75;
+				y += (aliens.get(i).getHeight() * 1);
+				aliens.get(i).setPos(x,y);
 			}
-//y- 			aliens.add( new Sprite_MovableYes_CollidableYes_Cl("/images/alien.jpg", x, y,35,35,1) );
-			aliens.add( new Sprite_MovableYes_CollidableYes_Cl("/images/alien.jpg", x, y,35,35,1) );
-			x += 75;
+			//y- x += 75;
+			x += (aliens.get(i).getWidth() * 1);
 		}
 	}
 
@@ -51,14 +54,18 @@ public class AlienHorde
 	{
 		for(int i = 0; i < shots.size(); i++)
 		{
-			Sprite_MovableYes_CollidableYes_Cl am = shots.get(i);
-		   for(int j=0; j<aliens.size();j++)
-		   {
-		   	Sprite_MovableYes_CollidableYes_Cl al = aliens.get(j);
-			   if ((am.getX() >= al.getX() && am.getX() <= al.getX()+60) ||
-			        (am.getX()+10 >= al.getX() && am.getX()+10 <= al.getX()+60))
-			   	     if ((am.getY() >= al.getY() && am.getY() <= al.getY()+60) ||
-			   	     	   (am.getY()+10 >= al.getY() && am.getY()+10 <= al.getY()+60))
+			Sprite_MovableYes_CollidableYes_Cl shot = shots.get(i);
+		    for(int j=0; j<aliens.size();j++)
+		    {
+		   		Sprite_MovableYes_CollidableYes_Cl alien = aliens.get(j);
+//y-			   if ((shot.getX() >= alien.getX() && shot.getX() <= alien.getX()+60) ||
+//					   (shot.getX()+10 >= alien.getX() && shot.getX()+10 <= alien.getX()+60))
+//				   if ((shot.getY() >= alien.getY() && shot.getY() <= alien.getY()+60) ||
+//						   (shot.getY()+10 >= alien.getY() && shot.getY()+10 <= alien.getY()+60))
+			   if ((shot.getX() >= alien.getX() && shot.getX() <= alien.getX()+alien.getWidth()) ||
+					   (shot.getX()+shot.getWidth() >= alien.getX() && shot.getX()+shot.getWidth() <= alien.getX()+alien.getWidth()))
+				   if ((shot.getY() >= alien.getY() && shot.getY() <= alien.getY()+alien.getHeight()) ||
+						   (shot.getY()+shot.getHeight() >= alien.getY() && shot.getY()+shot.getHeight() <= alien.getY()+alien.getHeight()))
 			   	     	   {
 			   		         aliens.remove(j);
 			   		         shots.remove(i);

@@ -8,8 +8,10 @@ import java.awt.Graphics;
 
 public class StarFighter extends JFrame
 {
-	public static int WIDTH = 800;
-	public static int HEIGHT = 600;
+	//y- public static int WIDTH = 800;
+	public static int WIDTH = 2200;
+	//y- public static int HEIGHT = 600;
+	public static int HEIGHT = 1300;
 
 	public StarFighter()
 	{
