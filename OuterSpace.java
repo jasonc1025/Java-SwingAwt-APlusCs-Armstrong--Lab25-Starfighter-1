@@ -88,7 +88,7 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 		{
 			//y- shots.add(new Sprite_MovableYes_CollidableYes_Cl(ship.getX()+ship.getWidth()/2-5, ship.getY(), 10, 10, 5));
 			shots.add(new Sprite_MovableYes_CollidableYes_Cl( "/images/Circle-Green-20x20.png",ship.getX()+ship.getWidth()/2-5, ship.getY(), 10, 10, 5));
-			keys[4] = false;
+			//y turn off to allow continuous fire- keys[4] = false;
 		}
 
 		shots.move();
