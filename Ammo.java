@@ -4,11 +4,8 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import javax.imageio.ImageIO;
 
-public class Ammo extends MovingThing
+public class Ammo extends SpriteCore_ClAb
 {
 	private int speed;
 

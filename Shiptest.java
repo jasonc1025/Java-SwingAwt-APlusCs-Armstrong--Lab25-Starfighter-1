@@ -2,15 +2,11 @@
 //www.apluscompsci.com
 //Name -
 
-import java.io.*;
-import java.util.*;
-import static java.lang.System.*;
-
 public class Shiptest
 {
     public static void main( String args[] )
     {
-        MovingThing test = new Ship();
+        SpriteCore_ClAb test = new Ship();
         System.out.println("Ship 1 " + test);
 
         Ship test2 = new Ship(50,75);
