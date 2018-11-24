@@ -5,21 +5,18 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Canvas;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
-import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Component;
 
 public class OuterSpace extends JPanel implements KeyListener, Runnable
 {
-	private Ship ship;
+
+//y- too fast and choppy- 		ship = new Sprite_MovableYes_CollidableYes_Cl(310,450,5);
+//y- 	private Sprite_MovableYes_CollidableYes_Cl ship = new Sprite_MovableYes_CollidableYes_Cl(310,450,1);
+	private Sprite_MovableYes_CollidableYes_Cl ship = new Sprite_MovableYes_CollidableYes_Cl( "/images/ship.jpg", 310, 450, 50, 50, 1);
 
    private AlienHorde horde;
 	private Bullets shots;
@@ -32,9 +29,6 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 		keys = new boolean[5];
 
 		setBackground(Color.black);
-
-//y- too fast and choppy- 		ship = new Ship(310,450,5);
-		ship = new Ship(310,450,1);
 
 		horde = new AlienHorde(20);
 
@@ -92,7 +86,8 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 		}
 		if(keys[4] == true)
 		{
-			shots.add(new Ammo(ship.getX()+ship.getWidth()/2-5, ship.getY(), 10, 10, 5));
+			//y- shots.add(new Sprite_MovableYes_CollidableYes_Cl(ship.getX()+ship.getWidth()/2-5, ship.getY(), 10, 10, 5));
+			shots.add(new Sprite_MovableYes_CollidableYes_Cl( "/images/Circle-Green-20x20.png",ship.getX()+ship.getWidth()/2-5, ship.getY(), 10, 10, 5));
 			keys[4] = false;
 		}
 

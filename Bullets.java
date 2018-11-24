@@ -2,37 +2,33 @@
 //www.apluscompsci.com
 //Name -
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import javax.imageio.ImageIO;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bullets
 {
-	private List<Ammo> ammo;
+	private List<Sprite_MovableYes_CollidableYes_Cl> ammo;
 
 	public Bullets()
 	{
-		ammo = new ArrayList<Ammo>();
+		ammo = new ArrayList<Sprite_MovableYes_CollidableYes_Cl>();
 	}
 
-	public void add(Ammo al)
+	public void add(Sprite_MovableYes_CollidableYes_Cl al)
 	{
 	   ammo.add(al);
 	}
 
 	public void draw( Graphics window )
 	{
-		for( Ammo a : ammo)
+		for( Sprite_MovableYes_CollidableYes_Cl a : ammo)
 			a.draw( window );
 	}
 
 	public void move()
 	{
-		for(Ammo al : ammo)
+		for(Sprite_MovableYes_CollidableYes_Cl al : ammo)
 		{
 			al.move("UP");
 		}
@@ -47,7 +43,7 @@ public class Bullets
 		}
 	}
 
-	public List<Ammo> getList()
+	public List<Sprite_MovableYes_CollidableYes_Cl> getList()
 	{
 		return ammo;
 	}

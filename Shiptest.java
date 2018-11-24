@@ -6,15 +6,15 @@ public class Shiptest
 {
     public static void main( String args[] )
     {
-        SpriteCore_ClAb test = new Ship();
-        System.out.println("Ship 1 " + test);
+        SpriteCore_ClAb test = new Sprite_MovableYes_CollidableYes_Cl();
+        System.out.println("Sprite_MovableYes_CollidableYes_Cl 1 " + test);
 
-        Ship test2 = new Ship(50,75);
-        System.out.println("Ship 2 " + test2);
+        Sprite_MovableYes_CollidableYes_Cl test2 = new Sprite_MovableYes_CollidableYes_Cl(50,75);
+        System.out.println("Sprite_MovableYes_CollidableYes_Cl 2 " + test2);
 
-        Ship test3 = new Ship();
+        Sprite_MovableYes_CollidableYes_Cl test3 = new Sprite_MovableYes_CollidableYes_Cl();
         test3.setX(3);
         test3.setY(5);
-        System.out.println("Ship 3 " + test2);
+        System.out.println("Sprite_MovableYes_CollidableYes_Cl 3 " + test2);
     }
 }
