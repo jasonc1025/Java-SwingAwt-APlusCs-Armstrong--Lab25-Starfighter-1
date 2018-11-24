@@ -18,8 +18,24 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 //y- 	private Sprite_MovableYes_CollidableYes_Cl ship = new Sprite_MovableYes_CollidableYes_Cl(310,450,1);
 	private Sprite_MovableYes_CollidableYes_Cl ship = new Sprite_MovableYes_CollidableYes_Cl( "/images/ship.jpg", 310, 450, 50, 50, 1);
 
-   private AlienHorde horde;
+    private AlienHorde horde;
 	private Bullets shots;
+
+//	private Long cycle_ProjectileLast_NanoTime = new Long( 0 );
+//	private Long cycle_Last_NanoTime = new Long( 0 );
+//	private Long cycle_Current_NanoTime = new Long( 0 );
+
+    // * IMPORTANT: 1 sec = 1 x 10^9 nano-sec
+    // * IMPORTANT: To avoid 'java: integer number too large' error, require 'l' for 64bit otherwise 32bit default
+    // * Projectile at 1/10 sec frequency
+	private long gameCycle_Projectile_Prev_NanoSec = 0l;
+	private long gameCycle_Prev_NanoSec = 0l;
+	private long gameCycle_Curr_NanoSec = 0l;
+    private long gameCycle_Fps_NanoSec = 0l;
+    private long gameCycle_Projectile_Per_Sec = 10;
+    private double gameCycle_Period_Sec = 0.0;
+    private long gameCycle_DelayFactor_MilliSec = 10; // 5msec too fast, 20msec kindof slow, 10msec seems right
+
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -47,6 +63,20 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 
 	public void paint( Graphics window )
 	{
+
+		//
+		// * Timer Update
+		//
+
+		// * Calculate timer since last GameEngine Cycle
+		gameCycle_Curr_NanoSec = System.nanoTime();
+		gameCycle_Period_Sec = (gameCycle_Curr_NanoSec - gameCycle_Prev_NanoSec) / 1000000000.0;
+		gameCycle_Fps_NanoSec = Math.round(1/ gameCycle_Period_Sec);
+		gameCycle_Prev_NanoSec = gameCycle_Curr_NanoSec;
+		//y- debug- System.out.println("> "+ gameCycle_Fps_NanoSec.value);
+		//y- System.out.println("> FPS: "+ gameCycle_Fps_NanoSec);
+
+
 		//set up the double buffering to make the game animation nice and smooth
 		Graphics2D twoDGraph = (Graphics2D)window;
 
@@ -84,11 +114,16 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 		{
 			ship.move("DOWN");
 		}
-		if(keys[4] == true)
+        // * IMPORTANT: 1 sec = 1 x 10^9 nano-sec
+        // * IMPORTANT: To avoid 'java: integer number too large' error, require 'l' for 64bit otherwise 32bit default
+        // * Projectile at 1/10 sec frequency (or (1/10 * Math.pow(10,9)) nanosec)
+        // ** '1.0' required for decimal division
+		if( (keys[4] == true) && ( gameCycle_Curr_NanoSec - gameCycle_Projectile_Prev_NanoSec > (1.0/gameCycle_Projectile_Per_Sec * Math.pow(10,9)) ) )
 		{
 			//y- shots.add(new Sprite_MovableYes_CollidableYes_Cl(ship.getX()+ship.getWidth()/2-5, ship.getY(), 10, 10, 5));
 			shots.add(new Sprite_MovableYes_CollidableYes_Cl( "/images/Circle-Green-20x20.png",ship.getX()+ship.getWidth()/2-5, ship.getY(), 10, 10, 5));
 			//y turn off to allow continuous fire- keys[4] = false;
+            gameCycle_Projectile_Prev_NanoSec = gameCycle_Curr_NanoSec;
 		}
 
 		shots.move();
@@ -171,7 +206,10 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
    	{
    		while(true)
    		{
-   		   Thread.currentThread().sleep(5);
+			//y- Thread.currentThread().sleep(5);
+			//y- Thread.currentThread().sleep(20);
+            //y- Thread.currentThread().sleep(10);  // 5msec too fast, 20msec kindof slow, 10msec seems right
+            Thread.currentThread().sleep(gameCycle_DelayFactor_MilliSec);  // 5msec too fast, 20msec kindof slow, 10msec seems right
             repaint();
          }
       }catch(Exception e)
