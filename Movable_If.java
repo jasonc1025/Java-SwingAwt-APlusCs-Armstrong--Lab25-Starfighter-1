@@ -2,7 +2,7 @@
 //www.apluscompsci.com
 //Name -
 
-public interface Moveable
+public interface Movable_If
 {
      public void setSpeed( int s );
 	 public int getSpeed();
