@@ -54,42 +54,46 @@ public class Aliens_Cl
 	{
 		for(int i = 0; i < projectilesLstIn.size(); i++)
 		{
-			Sprite_MovableYes_CollidableYes_Cl projectile_Ob = projectilesLstIn.get(i);
+			Sprite_MovableYes_CollidableYes_Cl spriteProjectileOb = projectilesLstIn.get(i);
+			
 		    for(int j = 0; j< aliens_Lst.size(); j++)
 		    {
-		   		Sprite_MovableYes_CollidableYes_Cl alien_Ob = aliens_Lst.get(j);
-                //y-			   if ((projectile_Ob.getX() >= alien_Ob.getX() && projectile_Ob.getX() <= alien_Ob.getX()+60) ||
-                //					   (projectile_Ob.getX()+10 >= alien_Ob.getX() && projectile_Ob.getX()+10 <= alien_Ob.getX()+60))
-                //				   if ((projectile_Ob.getY() >= alien_Ob.getY() && projectile_Ob.getY() <= alien_Ob.getY()+60) ||
-                //						   (projectile_Ob.getY()+10 >= alien_Ob.getY() && projectile_Ob.getY()+10 <= alien_Ob.getY()+60))
-//				if ((projectile_Ob.getX() >= alien_Ob.getX() && projectile_Ob.getX() <= alien_Ob.getX()+alien_Ob.getWidth()) ||
-//						(projectile_Ob.getX()+projectile_Ob.getWidth() >= alien_Ob.getX() && projectile_Ob.getX()+projectile_Ob.getWidth() <= alien_Ob.getX()+alien_Ob.getWidth()))
-//				{
-//					if ((projectile_Ob.getY() >= alien_Ob.getY() && projectile_Ob.getY() <= alien_Ob.getY() + alien_Ob.getHeight()) ||
-//							(projectile_Ob.getY() + projectile_Ob.getHeight() >= alien_Ob.getY() && projectile_Ob.getY() + projectile_Ob.getHeight() <= alien_Ob.getY() + alien_Ob.getHeight()))
-//					{
-//						aliens_Lst.remove(j);
-//						projectilesLstIn.remove(i);
-//						break;
-//					}
-//				}
-				if (((projectile_Ob.getX() >= alien_Ob.getX() && projectile_Ob.getX() <= alien_Ob.getX() + alien_Ob.getWidth()  )  &&
-				     (projectile_Ob.getY() >= alien_Ob.getY() && projectile_Ob.getY() <= alien_Ob.getY() + alien_Ob.getHeight()))
-					||
-				    ((projectile_Ob.getX() + projectile_Ob.getWidth()  >= alien_Ob.getX() && projectile_Ob.getX() + projectile_Ob.getWidth()  <= alien_Ob.getX() + alien_Ob.getWidth()  ) &&
-					 (projectile_Ob.getY() + projectile_Ob.getHeight() >= alien_Ob.getY() && projectile_Ob.getY() + projectile_Ob.getHeight() <= alien_Ob.getY() + alien_Ob.getHeight() )))
-					{
-						aliens_Lst.remove(j);
-						projectilesLstIn.remove(i);
-						break;
-					}
+		   		Sprite_MovableYes_CollidableYes_Cl spriteAlienOb = aliens_Lst.get(j);
+                //y-			   if ((spriteProjectileOb.getX() >= spriteAlienOb.getX() && spriteProjectileOb.getX() <= spriteAlienOb.getX()+60) ||
+                //					   (spriteProjectileOb.getX()+10 >= spriteAlienOb.getX() && spriteProjectileOb.getX()+10 <= spriteAlienOb.getX()+60))
+                //				   if ((spriteProjectileOb.getY() >= spriteAlienOb.getY() && spriteProjectileOb.getY() <= spriteAlienOb.getY()+60) ||
+                //						   (spriteProjectileOb.getY()+10 >= spriteAlienOb.getY() && spriteProjectileOb.getY()+10 <= spriteAlienOb.getY()+60))
 
-//				if( alien_Ob.colliding( projectile_Ob ))
-//				{
-//					aliens_Lst.remove(j);
-//					projectilesLstIn.remove(i);
-//					break;
-//				}
+				//y-				if ((spriteProjectileOb.getX() >= spriteAlienOb.getX() && spriteProjectileOb.getX() <= spriteAlienOb.getX()+spriteAlienOb.getWidth()) ||
+				//						(spriteProjectileOb.getX()+spriteProjectileOb.getWidth() >= spriteAlienOb.getX() && spriteProjectileOb.getX()+spriteProjectileOb.getWidth() <= spriteAlienOb.getX()+spriteAlienOb.getWidth()))
+				//				{
+				//					if ((spriteProjectileOb.getY() >= spriteAlienOb.getY() && spriteProjectileOb.getY() <= spriteAlienOb.getY() + spriteAlienOb.getHeight()) ||
+				//							(spriteProjectileOb.getY() + spriteProjectileOb.getHeight() >= spriteAlienOb.getY() && spriteProjectileOb.getY() + spriteProjectileOb.getHeight() <= spriteAlienOb.getY() + spriteAlienOb.getHeight()))
+				//					{
+				//						aliens_Lst.remove(j);
+				//						projectilesLstIn.remove(i);
+				//						break;
+				//					}
+				//				}
+				
+				//y-				if (((spriteProjectileOb.getX() >= spriteAlienOb.getX() && spriteProjectileOb.getX() <= spriteAlienOb.getX() + spriteAlienOb.getWidth()  )  &&
+				//				     (spriteProjectileOb.getY() >= spriteAlienOb.getY() && spriteProjectileOb.getY() <= spriteAlienOb.getY() + spriteAlienOb.getHeight()))
+				//					||
+				//				    ((spriteProjectileOb.getX() + spriteProjectileOb.getWidth()  >= spriteAlienOb.getX() && spriteProjectileOb.getX() + spriteProjectileOb.getWidth()  <= spriteAlienOb.getX() + spriteAlienOb.getWidth()  ) &&
+				//					 (spriteProjectileOb.getY() + spriteProjectileOb.getHeight() >= spriteAlienOb.getY() && spriteProjectileOb.getY() + spriteProjectileOb.getHeight() <= spriteAlienOb.getY() + spriteAlienOb.getHeight() )))
+				//					{
+				//						aliens_Lst.remove(j);
+				//						projectilesLstIn.remove(i);
+				//						break;
+				//					}
+
+				//TODO tried to reverse the objects but failed, projectiles miss front row
+				if( spriteProjectileOb.colliding( spriteAlienOb ))
+				{
+					aliens_Lst.remove(j);
+					projectilesLstIn.remove(i);
+					break;
+				}
 		   	}
 		}
 	}

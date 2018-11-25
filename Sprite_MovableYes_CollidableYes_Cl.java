@@ -4,7 +4,7 @@
 
 import java.awt.Graphics;
 
-public class Sprite_MovableYes_CollidableYes_Cl extends SpriteCore_ClAb implements Moveable {
+public class Sprite_MovableYes_CollidableYes_Cl extends SpriteCore_ClAb implements Moveable, Collidable {
 	private int speed;
 
 	public Sprite_MovableYes_CollidableYes_Cl()
@@ -70,21 +70,26 @@ public class Sprite_MovableYes_CollidableYes_Cl extends SpriteCore_ClAb implemen
    		window.drawImage(getImage(),getX(),getY(),getWidth(),getHeight(),null);
 	}
 
-	public boolean colliding( Sprite_MovableYes_CollidableYes_Cl spriteOtherObIn )
+	public boolean colliding( Sprite_MovableYes_CollidableYes_Cl spriteOtherIn )
     {
         boolean colliding_Boo = false;  // * default to false
 
-        if ((this.getX() >= spriteOtherObIn.getX() && this.getX() <= spriteOtherObIn.getX()+spriteOtherObIn.getWidth()) ||
-            (this.getX()+this.getWidth() >= spriteOtherObIn.getX() && this.getX()+this.getWidth() <= spriteOtherObIn.getX()+spriteOtherObIn.getWidth()))
-        {
-            if ((this.getY() >= spriteOtherObIn.getY() && this.getY() <= spriteOtherObIn.getY() + spriteOtherObIn.getHeight()) ||
-                (this.getY() + this.getHeight() >= spriteOtherObIn.getY() && this.getY() + this.getHeight() <= spriteOtherObIn.getY() + spriteOtherObIn.getHeight()))
+//        if ((this.getX() >= spriteOtherObIn.getX() && this.getX() <= spriteOtherObIn.getX()+spriteOtherObIn.getWidth()) ||
+//            (this.getX()+this.getWidth() >= spriteOtherObIn.getX() && this.getX()+this.getWidth() <= spriteOtherObIn.getX()+spriteOtherObIn.getWidth()))
+//        {
+//            if ((this.getY() >= spriteOtherObIn.getY() && this.getY() <= spriteOtherObIn.getY() + spriteOtherObIn.getHeight()) ||
+//                (this.getY() + this.getHeight() >= spriteOtherObIn.getY() && this.getY() + this.getHeight() <= spriteOtherObIn.getY() + spriteOtherObIn.getHeight()))
+//        }
+
+        if (((this.getX() >= spriteOtherIn.getX() && this.getX() <= spriteOtherIn.getX() + spriteOtherIn.getWidth()  )  &&
+             (this.getY() >= spriteOtherIn.getY() && this.getY() <= spriteOtherIn.getY() + spriteOtherIn.getHeight()))
+            ||
+            ((this.getX() + this.getWidth()  >= spriteOtherIn.getX() && this.getX() + this.getWidth()  <= spriteOtherIn.getX() + spriteOtherIn.getWidth()  ) &&
+             (this.getY() + this.getHeight() >= spriteOtherIn.getY() && this.getY() + this.getHeight() <= spriteOtherIn.getY() + spriteOtherIn.getHeight() )))
             {
                 colliding_Boo = true;
             }
-        }
         return colliding_Boo;
-
     }
 
 
