@@ -13,17 +13,17 @@ import javax.swing.JPanel;
 public class OuterSpace extends JPanel implements KeyListener, Runnable
 {
 
-//y- too fast and choppy- 		ship = new Sprite_MovableYes_CollidableYes_Cl(310,450,5);
-//y- 	private Sprite_MovableYes_CollidableYes_Cl ship = new Sprite_MovableYes_CollidableYes_Cl(310,450,1);
+    //y- too fast and choppy- 		ship = new Sprite_MovableYes_CollidableYes_Cl(310,450,5);
+    //y- 	private Sprite_MovableYes_CollidableYes_Cl ship = new Sprite_MovableYes_CollidableYes_Cl(310,450,1);
     // * Speed was '1'
 	private Sprite_MovableYes_CollidableYes_Cl ship = new Sprite_MovableYes_CollidableYes_Cl( "/images/ship.jpg", (int)(StarFighter.WIDTH * 0.50), (int)(StarFighter.HEIGHT * 0.80),100,100,2);
 
-    private AlienHorde horde;
-	private Bullets shots;
+    private Aliens_Cl horde;
+	private Projectiles_Cl shots;
 
-//	private Long cycle_ProjectileLast_NanoTime = new Long( 0 );
-//	private Long cycle_Last_NanoTime = new Long( 0 );
-//	private Long cycle_Current_NanoTime = new Long( 0 );
+    //	private Long cycle_ProjectileLast_NanoTime = new Long( 0 );
+    //	private Long cycle_Last_NanoTime = new Long( 0 );
+    //	private Long cycle_Current_NanoTime = new Long( 0 );
 
     // * IMPORTANT: 1 sec = 1 x 10^9 nano-sec
     // * IMPORTANT: To avoid 'java: integer number too large' error, require 'l' for 64bit otherwise 32bit default
@@ -46,9 +46,9 @@ public class OuterSpace extends JPanel implements KeyListener, Runnable
 
 		setBackground(Color.black);
 
-		horde = new AlienHorde(100);
+		horde = new Aliens_Cl(100);
 
-		shots = new Bullets();
+		shots = new Projectiles_Cl();
 
 		this.addKeyListener(this);
 		new Thread(this).start();

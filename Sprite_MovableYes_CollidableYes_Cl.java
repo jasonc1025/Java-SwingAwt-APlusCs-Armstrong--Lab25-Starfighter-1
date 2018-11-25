@@ -4,8 +4,7 @@
 
 import java.awt.Graphics;
 
-public class Sprite_MovableYes_CollidableYes_Cl extends SpriteCore_ClAb
-{
+public class Sprite_MovableYes_CollidableYes_Cl extends SpriteCore_ClAb implements Moveable {
 	private int speed;
 
 	public Sprite_MovableYes_CollidableYes_Cl()
@@ -71,8 +70,28 @@ public class Sprite_MovableYes_CollidableYes_Cl extends SpriteCore_ClAb
    		window.drawImage(getImage(),getX(),getY(),getWidth(),getHeight(),null);
 	}
 
+	public boolean colliding( Sprite_MovableYes_CollidableYes_Cl spriteOtherObIn )
+    {
+        boolean colliding_Boo = false;  // * default to false
+
+        if ((this.getX() >= spriteOtherObIn.getX() && this.getX() <= spriteOtherObIn.getX()+spriteOtherObIn.getWidth()) ||
+            (this.getX()+this.getWidth() >= spriteOtherObIn.getX() && this.getX()+this.getWidth() <= spriteOtherObIn.getX()+spriteOtherObIn.getWidth()))
+        {
+            if ((this.getY() >= spriteOtherObIn.getY() && this.getY() <= spriteOtherObIn.getY() + spriteOtherObIn.getHeight()) ||
+                (this.getY() + this.getHeight() >= spriteOtherObIn.getY() && this.getY() + this.getHeight() <= spriteOtherObIn.getY() + spriteOtherObIn.getHeight()))
+            {
+                colliding_Boo = true;
+            }
+        }
+        return colliding_Boo;
+
+    }
+
+
 	public String toString()
 	{
 		return super.toString() + getSpeed();
 	}
 }
+
+

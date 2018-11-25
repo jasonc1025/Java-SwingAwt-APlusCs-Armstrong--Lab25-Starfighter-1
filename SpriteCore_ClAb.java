@@ -6,8 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.net.URL;
 
-public abstract class SpriteCore_ClAb implements Moveable
-{
+public abstract class SpriteCore_ClAb {
 	//y- protected Image image_Fl;
 	private Image image_Fl;
 	private int positionX_Fl;
