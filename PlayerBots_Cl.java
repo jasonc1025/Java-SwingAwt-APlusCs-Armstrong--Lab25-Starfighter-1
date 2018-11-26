@@ -20,7 +20,8 @@ public class PlayerBots_Cl
 		for( int i = 0; i < size; i++)
 		{
             //y- 			playerBots_ObsLst_Fl.add( new Sprite_Movable_Collidable_Cl("/images/alien.jpg", x, y, 35, 35, 1) );
-			playerBots_ObsLst_Fl.add( new Sprite_Movable_Collidable_Cl("/images/alien.jpg", x, y, 100, 100, 1) );
+			//y- playerBots_ObsLst_Fl.add( new Sprite_Movable_Collidable_Cl("/images/alien.jpg", x, y, 100, 100, 1) );
+			playerBots_ObsLst_Fl.add( new Sprite_Movable_Collidable_Cl("/images/ufo.png", x, y, 50, 50, 1) );
 			if( x > Game_Main_JFrame_Cl.WIDTH - 50)
 			{
 				x = 25;

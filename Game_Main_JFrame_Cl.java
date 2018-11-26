@@ -7,10 +7,14 @@ import java.awt.Component;
 
 public class Game_Main_JFrame_Cl extends JFrame
 {
+	// * Max size for laptop screen
 	//y- public static int WIDTH = 800;
-	public static int WIDTH = 2200;
+	//y- public static int WIDTH = 2300;
+	public static int WIDTH = 1600;
 	//y- public static int HEIGHT = 600;
-	public static int HEIGHT = 1300;
+	//y- public static int HEIGHT = 1300;
+	public static int HEIGHT = 800;
+
 	public static int SCORE = 0;
 
 	public Game_Main_JFrame_Cl()

@@ -19,7 +19,8 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
     //y- too fast and choppy- 		playerMe_Ob = new Sprite_Movable_Collidable_Cl(310,450,5);
     //y- 	private Sprite_Movable_Collidable_Cl playerMe_Ob = new Sprite_Movable_Collidable_Cl(310,450,1);
     // * Speed was '1'
-	private Sprite_Movable_Collidable_Cl playerMe_Ob = new Sprite_Movable_Collidable_Cl( "/images/ship.jpg", (int)(Game_Main_JFrame_Cl.WIDTH * 0.50), (int)(Game_Main_JFrame_Cl.HEIGHT * 0.80),100,100,2);
+	//y- private Sprite_Movable_Collidable_Cl playerMe_Ob = new Sprite_Movable_Collidable_Cl( "/images/ship.jpg", (int)(Game_Main_JFrame_Cl.WIDTH * 0.50), (int)(Game_Main_JFrame_Cl.HEIGHT * 0.80),100,100,2);
+	private Sprite_Movable_Collidable_Cl playerMe_Ob = new Sprite_Movable_Collidable_Cl( "/images/CalvinHobbes-Saucer.png", (int)(Game_Main_JFrame_Cl.WIDTH * 0.50), (int)(Game_Main_JFrame_Cl.HEIGHT * 0.80),100,100,2);
 
     private PlayerBots_Cl playerBots_Ob;
 	private Missiles_Cl missiles_Ob;
