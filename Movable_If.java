@@ -4,6 +4,9 @@
 
 public interface Movable_If
 {
-     public void setSpeed( int s );
-	 public int getSpeed();
+    public void setSpeed( int s );
+	public int getSpeed();
+
+    public void move(String direction);
+
 }

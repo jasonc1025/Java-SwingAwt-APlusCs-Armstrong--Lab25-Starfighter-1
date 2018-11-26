@@ -8,50 +8,50 @@ import java.util.List;
 
 public class Missiles_Cl
 {
-//	private List<Sprite_Movable_Collidable_Cl> missles_Lst;
-	private List<Sprite_Movable_Collidable_Cl> missles_Lst;
+	//n-	private List<Sprite_Core_ClAb> missiles_ObsLst_Fl;
+	private List<Sprite_Movable_Collidable_Cl> missiles_ObsLst_Fl;
 
 	public Missiles_Cl()
 	{
-		missles_Lst = new ArrayList<Sprite_Movable_Collidable_Cl>();
+		missiles_ObsLst_Fl = new ArrayList<Sprite_Movable_Collidable_Cl>();
 	}
 
-	public void add(Sprite_Movable_Collidable_Cl al)
+	public void add(Sprite_Movable_Collidable_Cl missileObIn)
 	{
-	   missles_Lst.add(al);
+	   missiles_ObsLst_Fl.add(missileObIn);
 	}
 
 	public void draw( Graphics window )
 	{
-		for( Sprite_Movable_Collidable_Cl a : missles_Lst)
-			a.draw( window );
+		for( Sprite_Movable_Collidable_Cl missileOb : missiles_ObsLst_Fl)
+			missileOb.draw( window );
 	}
 
 	public void move()
 	{
-		for(Sprite_Movable_Collidable_Cl al : missles_Lst)
+		for(Sprite_Movable_Collidable_Cl missileOb : missiles_ObsLst_Fl)
 		{
-			al.move("UP");
+			missileOb.move("UP");
 		}
 	}
 
 	public void cleanEmUp()
 	{
-		for(int i = 0; i< missles_Lst.size(); i++)
+		for(int i = 0; i< missiles_ObsLst_Fl.size(); i++)
 		{
-//			if(missles_Lst.get(i).getX()<-20)
-			if(missles_Lst.get(i).getY() < 0)
-			   missles_Lst.remove(i);
+//			if(missiles_ObsLst_Fl.get(i).getX()<-20)
+			if(missiles_ObsLst_Fl.get(i).getY() < 0)
+			   missiles_ObsLst_Fl.remove(i);
 		}
 	}
 
 	public List<Sprite_Movable_Collidable_Cl> getList()
 	{
-		return missles_Lst;
+		return missiles_ObsLst_Fl;
 	}
 
 	public String toString()
 	{
-		return "" + missles_Lst;
+		return "" + missiles_ObsLst_Fl;
 	}
 }

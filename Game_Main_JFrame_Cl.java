@@ -4,31 +4,31 @@
 
 import javax.swing.JFrame;
 import java.awt.Component;
-import java.awt.Graphics;
 
-public class StarFighter extends JFrame
+public class Game_Main_JFrame_Cl extends JFrame
 {
 	//y- public static int WIDTH = 800;
 	public static int WIDTH = 2200;
 	//y- public static int HEIGHT = 600;
 	public static int HEIGHT = 1300;
+	public static int SCORE = 0;
 
-	public StarFighter()
+	public Game_Main_JFrame_Cl()
 	{
 		super("STARFIGHTER");
 
 		setSize(WIDTH, HEIGHT);
 
-		OuterSpace theGame = new OuterSpace(this);
+		Game_Cycle_JPanel_Cl theGame = new Game_Cycle_JPanel_Cl(this);
 		((Component)theGame).setFocusable(true);
 
-      getContentPane().add( theGame );
+      	getContentPane().add( theGame );
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
 	public static void main( String args[] )
 	{
-		StarFighter run = new StarFighter();
+		Game_Main_JFrame_Cl run = new Game_Main_JFrame_Cl();
 	}
 }

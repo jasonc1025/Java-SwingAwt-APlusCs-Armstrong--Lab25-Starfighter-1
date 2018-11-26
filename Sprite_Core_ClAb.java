@@ -6,43 +6,22 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.net.URL;
 
-public abstract class SpriteCore_ClAb {
+public abstract class Sprite_Core_ClAb {
 	//y- protected Image image_Fl;
 	private Image image_Fl;
 	private int positionX_Fl;
 	private int positionY_Fl;
 	private int imageWidth_Fl;
 	private int imageHeight_Fl;
+	//y- protected int speed;
+	private int speed;
 
-	public SpriteCore_ClAb()
+	public Sprite_Core_ClAb()
 	{
-		positionX_Fl = 10;
-		positionY_Fl = 10;
-		imageWidth_Fl = 10;
-		imageHeight_Fl = 10;
+		this("/images/Circle-Green-20x20.png",0,0,0);
 	}
 
-	public SpriteCore_ClAb(String imageFileIn, int x, int y, int w, int h)
-	{
-		positionX_Fl = x;
-		positionY_Fl = y;
-
-		try
-		{
-			//y- URL url = getClass().getResource("/images/ship.jpg");
-			URL url = getClass().getResource(imageFileIn);
-			setImage(ImageIO.read(url));
-			this.imageWidth_Fl = w;
-			this.imageHeight_Fl = h;
-		}
-		catch(Exception e)
-		{
-			//feel free to do something here
-		}
-
-	}
-
-	public SpriteCore_ClAb(String imageFileIn, int x, int y)
+	public Sprite_Core_ClAb(String imageFileIn, int x, int y, int s)
 	{
 		positionX_Fl = x;
 		positionY_Fl = y;
@@ -61,7 +40,27 @@ public abstract class SpriteCore_ClAb {
 		{
 			//feel free to do something here
 		}
+		setSpeed(s);
+	}
 
+	public Sprite_Core_ClAb(String imageFileIn, int x, int y, int w, int h, int s)
+	{
+		positionX_Fl = x;
+		positionY_Fl = y;
+
+		try
+		{
+			//y- URL url = getClass().getResource("/images/ship.jpg");
+			URL url = getClass().getResource(imageFileIn);
+			setImage(ImageIO.read(url));
+			this.imageWidth_Fl = w;
+			this.imageHeight_Fl = h;
+		}
+		catch(Exception e)
+		{
+			//feel free to do something here
+		}
+		setSpeed(s);
 	}
 
 	public void setPos( int x, int y)
@@ -108,6 +107,15 @@ public abstract class SpriteCore_ClAb {
 	public int getHeight()
 	{
 		return imageHeight_Fl;
+	}
+
+	public void setSpeed(int s)
+	{
+	   speed=s;
+	}
+	public int getSpeed()
+	{
+	   return speed;
 	}
 
 	public abstract void move(String direction);

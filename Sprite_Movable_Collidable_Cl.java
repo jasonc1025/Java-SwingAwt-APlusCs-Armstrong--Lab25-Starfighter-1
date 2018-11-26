@@ -42,7 +42,7 @@ public class Sprite_Movable_Collidable_Cl extends Sprite_Core_ClAb implements Mo
 	      setY(getY()+getSpeed());
       else if(direction.equals("SIDEWAYS_AND_DOWN"))
       {
-        if(getX() > (StarFighter_JFrame_Main_Cl.WIDTH  - getWidth()) || getX() < (0 + getWidth()) )
+        if(getX() > (Game_Main_JFrame_Cl.WIDTH  - getWidth()) || getX() < (0 + getWidth()) )
         {
             setSpeed(-getSpeed());
 			//y- setY(getY()+25);
