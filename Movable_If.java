@@ -4,6 +4,9 @@
 
 public interface Movable_If
 {
+    int speed = 0;
+
+
     public void setSpeed( int s );
 	public int getSpeed();
 

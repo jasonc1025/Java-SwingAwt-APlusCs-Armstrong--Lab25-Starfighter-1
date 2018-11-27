@@ -14,7 +14,7 @@ public abstract class Sprite_Core_ClAb {
 	private int imageWidth_Fl;
 	private int imageHeight_Fl;
 	//y- protected int speed;
-	private int speed;
+	//y- private int speed;
 
 	public Sprite_Core_ClAb()
 	{
@@ -40,7 +40,7 @@ public abstract class Sprite_Core_ClAb {
 		{
 			//feel free to do something here
 		}
-		setSpeed(s);
+		//y- setSpeed(s);
 	}
 
 	public Sprite_Core_ClAb(String imageFileIn, int x, int y, int w, int h, int s)
@@ -60,7 +60,7 @@ public abstract class Sprite_Core_ClAb {
 		{
 			//feel free to do something here
 		}
-		setSpeed(s);
+		//y- setSpeed(s);
 	}
 
 	public void setPos( int x, int y)
@@ -109,16 +109,16 @@ public abstract class Sprite_Core_ClAb {
 		return imageHeight_Fl;
 	}
 
-	public void setSpeed(int s)
-	{
-	   speed=s;
-	}
-	public int getSpeed()
-	{
-	   return speed;
-	}
+	//y- public void setSpeed(int s)
+	// {
+	//    speed=s;
+	// }
+	//y- public int getSpeed()
+	// {
+	//    return speed;
+	// }
 
-	public abstract void move(String direction);
+	//y- public abstract void move(String direction);
 	public abstract void draw(Graphics window);
 
 	public String toString()
