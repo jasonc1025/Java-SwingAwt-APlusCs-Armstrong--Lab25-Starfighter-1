@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import javax.sound.sampled.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,6 +23,8 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
     // * Speed was '1'
 	//y- private Sprite_Movable_Collidable_Cl playerMe_Ob = new Sprite_Movable_Collidable_Cl( "/images/ship.jpg", (int)(Game_Main_JFrame_Cl.WIDTH * 0.50), (int)(Game_Main_JFrame_Cl.HEIGHT * 0.80),100,100,2);
 	private Sprite_Movable_Collidable_Cl playerMe_Ob = new Sprite_Movable_Collidable_Cl( "/images/CalvinHobbes-Saucer.png", (int)(Game_Main_JFrame_Cl.WIDTH * 0.50), (int)(Game_Main_JFrame_Cl.HEIGHT * 0.80),100,100,2);
+
+	List<Integer> playerMe_Input_StringOb_ArrLst = new ArrayList<Integer>();
 
     private PlayerBots_Cl playerBots_Ob;
 	private Missiles_Cl missiles_Ob;
@@ -41,12 +45,12 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
     private long gameCycle_DelayFactor_MilliSec = 10; // 5msec too fast, 20msec kindof slow, 10msec seems right
 
 
-	private boolean[] keys;
+	//y- private boolean[] keys;
 	private BufferedImage back;
 
 	public Game_Cycle_JPanel_Cl(JFrame par)
 	{
-		keys = new boolean[5];
+		//y- keys = new boolean[5];
 
 		setBackground(Color.black);
 
@@ -60,7 +64,7 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 		setVisible(true);
 	}
 
-   public void update(Graphics window)
+    public void update(Graphics window)
    {
 	   paint(window);
    }
@@ -109,27 +113,32 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
         graphToBack.drawString( "> SCORE: " + dfTemp.format(Game_Main_JFrame_Cl.SCORE), 50, 150 );
 
 
-		if(keys[0] == true)
+		//y- if(keys[0] == true)
+        if( playerMe_Input_StringOb_ArrLst.contains(Integer.valueOf(KeyEvent.VK_LEFT)) )
 		{
 			playerMe_Ob.move("LEFT");
 		}
-		if(keys[1] == true)
-		{
+		//y- if(keys[1] == true)
+        if( playerMe_Input_StringOb_ArrLst.contains(Integer.valueOf(KeyEvent.VK_RIGHT)) )
+        {
 			playerMe_Ob.move("RIGHT");
 		}
-		if(keys[2] == true)
-		{
+		//y- if(keys[2] == true)
+        if( playerMe_Input_StringOb_ArrLst.contains(Integer.valueOf(KeyEvent.VK_UP)) )
+        {
 			playerMe_Ob.move("UP");
 		}
-		if(keys[3] == true)
-		{
+		//y- if(keys[3] == true)
+        if( playerMe_Input_StringOb_ArrLst.contains(Integer.valueOf(KeyEvent.VK_DOWN)) )
+        {
 			playerMe_Ob.move("DOWN");
 		}
         // * IMPORTANT: 1 sec = 1 x 10^9 nano-sec
         // * IMPORTANT: To avoid 'java: integer number too large' error, require 'l' for 64bit otherwise 32bit default
         // * Projectile at 1/10 sec frequency (or (1/10 * Math.pow(10,9)) nanosec)
         // ** '1.0' required for decimal division
-		if( (keys[4] == true) && ( gameCycle_Curr_NanoSec - gameCycle_Projectile_Prev_NanoSec > (1.0/gameCycle_Projectile_Per_Sec * Math.pow(10,9)) ) )
+        //y- if( (keys[4] == true) && ( gameCycle_Curr_NanoSec - gameCycle_Projectile_Prev_NanoSec > (1.0/gameCycle_Projectile_Per_Sec * Math.pow(10,9)) ) )
+        if( ( playerMe_Input_StringOb_ArrLst.contains(Integer.valueOf(KeyEvent.VK_SPACE)) ) && ( gameCycle_Curr_NanoSec - gameCycle_Projectile_Prev_NanoSec > (1.0/gameCycle_Projectile_Per_Sec * Math.pow(10,9)) ) )
 		{
 			//y- missiles_Ob.add(new Sprite_Movable_Collidable_Cl(playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-5, playerMe_Ob.getY(), 10, 10, 5));
             Sprite_Movable_Collidable_Cl missileTemp = new Sprite_Movable_Collidable_Cl("/images/Circle-Green-20x20.png");
@@ -182,50 +191,77 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 
 	public void keyPressed(KeyEvent e)
 	{
+	    Integer playerInputCode = e.getKeyCode();
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
-			keys[0] = true;
+		    if( !playerMe_Input_StringOb_ArrLst.contains(playerInputCode))
+            {
+                playerMe_Input_StringOb_ArrLst.add(playerInputCode);
+            }
+			//y- keys[0] = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
-			keys[1] = true;
+            if( !playerMe_Input_StringOb_ArrLst.contains(playerInputCode))
+            {
+                playerMe_Input_StringOb_ArrLst.add(playerInputCode);
+            }
+            //y- keys[1] = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
-			keys[2] = true;
+            if( !playerMe_Input_StringOb_ArrLst.contains(playerInputCode))
+            {
+                playerMe_Input_StringOb_ArrLst.add(playerInputCode);
+            }
+			//y- keys[2] = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
-			keys[3] = true;
+            if( !playerMe_Input_StringOb_ArrLst.contains(playerInputCode))
+            {
+                playerMe_Input_StringOb_ArrLst.add(playerInputCode);
+            }
+			//y- keys[3] = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
-			keys[4] = true;
+            if( !playerMe_Input_StringOb_ArrLst.contains(playerInputCode))
+            {
+                playerMe_Input_StringOb_ArrLst.add(playerInputCode);
+            }
+			//y- keys[4] = true;
 		}
 		repaint();
 	}
 
 	public void keyReleased(KeyEvent e)
 	{
-		if (e.getKeyCode() == KeyEvent.VK_LEFT)
+        Integer playerInputCode = e.getKeyCode();
+        if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
-			keys[0] = false;
+            playerMe_Input_StringOb_ArrLst.remove(playerInputCode);
+			//y- keys[0] = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
-			keys[1] = false;
+            playerMe_Input_StringOb_ArrLst.remove(playerInputCode);
+			//y- keys[1] = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
-			keys[2] = false;
+            playerMe_Input_StringOb_ArrLst.remove(playerInputCode);
+			//y- keys[2] = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
-			keys[3] = false;
+            playerMe_Input_StringOb_ArrLst.remove(playerInputCode);
+			//y- keys[3] = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
-			keys[4] = false;
+            playerMe_Input_StringOb_ArrLst.remove(playerInputCode);
+			//y- keys[4] = false;
 		}
 		repaint();
 	}
