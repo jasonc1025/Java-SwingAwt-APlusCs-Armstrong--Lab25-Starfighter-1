@@ -26,7 +26,8 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 
 	List<Integer> playerMe_Input_StringOb_ArrLst = new ArrayList<Integer>();
 
-    private PlayerBots_Cl playerBots_Ob;
+	//o- private PlayerBots_Cl playerBots_Ob;
+	private SpritesList_Movable_Collidable_Cl playerBots_Ob;
 	private Missiles_Cl missiles_Ob;
 
     //	private Long cycle_ProjectileLast_NanoTime = new Long( 0 );
@@ -54,7 +55,8 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 
 		setBackground(Color.black);
 
-		playerBots_Ob = new PlayerBots_Cl(100);
+		//o-  playerBots_Ob = new PlayerBots_Cl(100);
+		playerBots_Ob = new SpritesList_Movable_Collidable_Cl(100);
 
 		missiles_Ob = new Missiles_Cl();
 
