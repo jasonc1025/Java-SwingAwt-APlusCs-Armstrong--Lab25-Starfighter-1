@@ -4,7 +4,7 @@
 
 public interface Movable_If
 {
-    int speed = 0;
+    //n int speed_Fl = 0;
 
 
     public void setSpeed( int s );

@@ -6,10 +6,7 @@ import java.awt.Graphics;
 
 public class Sprite_Movable_Collidable_Cl extends Sprite_Core_ClAb implements Movable_If, Collidable_If {
 
-	//y- protected int speed;
-	private int speed;
-
-    public Sprite_Movable_Collidable_Cl()
+	public Sprite_Movable_Collidable_Cl()
 	{
 		this("/images/Circle-Green-20x20.png",0,0,0);
 	}
@@ -37,11 +34,11 @@ public class Sprite_Movable_Collidable_Cl extends Sprite_Core_ClAb implements Mo
 
 	public void setSpeed(int s)
 	{
-		speed=s;
+		speed_Fl =s;
 	}
 	public int getSpeed()
 	{
-		return speed;
+		return speed_Fl;
 	}
 
     public void move(String direction)

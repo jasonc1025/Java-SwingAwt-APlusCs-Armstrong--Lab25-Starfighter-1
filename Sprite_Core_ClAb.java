@@ -13,8 +13,8 @@ public abstract class Sprite_Core_ClAb {
 	private int positionY_Fl;
 	private int imageWidth_Fl;
 	private int imageHeight_Fl;
-	//y- protected int speed;
-	//y- private int speed;
+	//y- private int speed_Fl;
+	protected int speed_Fl;
 
 	public Sprite_Core_ClAb()
 	{
@@ -111,11 +111,11 @@ public abstract class Sprite_Core_ClAb {
 
 	//y- public void setSpeed(int s)
 	// {
-	//    speed=s;
+	//    speed_Fl=s;
 	// }
 	//y- public int getSpeed()
 	// {
-	//    return speed;
+	//    return speed_Fl;
 	// }
 
 	//y- public abstract void move(String direction);
