@@ -10,6 +10,6 @@ public interface Movable_If
     public void setSpeed( int s );
 	public int getSpeed();
 
-    public void move(String direction);
+    public void move(Game_Cycle_JPanel_Cl.Direction_Enum direction_Enum_In);
 
 }

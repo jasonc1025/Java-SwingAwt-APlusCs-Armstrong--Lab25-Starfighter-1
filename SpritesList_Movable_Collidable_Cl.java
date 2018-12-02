@@ -51,13 +51,13 @@ public class SpritesList_Movable_Collidable_Cl
 			sprite_Ob_In.draw( window );
 	}
 
-	public void move(String direction_Str_In)
+	public void move( Game_Cycle_JPanel_Cl.Direction_Enum direction_Enum_In )
 	{
 		//n invalid methods-			for(Sprite_Core_ClAb al : sprites_ObsLst_Fl)
 		for(Sprite_Movable_Collidable_Cl sprite_Ob_In : sprites_ObsLst_Fl)
 		{
 			//o- sprite_Ob_In.move("SIDEWAYS_AND_DOWN");
-			sprite_Ob_In.move( direction_Str_In );
+			sprite_Ob_In.move( direction_Enum_In );
 		}
 	}
 

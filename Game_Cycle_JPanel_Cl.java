@@ -17,6 +17,12 @@ import javax.swing.JPanel;
 
 public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnable
 {
+	// * 'enum' must be defined outside of any method
+	// * 'protected' to be accessible by subordinate members
+	protected enum Direction_Enum
+	{
+		UP, DOWN, LEFT, RIGHT, SIDEWAYS_AND_DOWN;
+	}
 
     //y- too fast and choppy- 		playerMe_Ob = new Sprite_Movable_Collidable_Cl(310,450,5);
     //y- 	private Sprite_Movable_Collidable_Cl playerMe_Ob = new Sprite_Movable_Collidable_Cl(310,450,1);
@@ -118,22 +124,22 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 		//y- if(keys[0] == true)
         if( playerMe_Input_StringOb_ArrLst.contains(Integer.valueOf(KeyEvent.VK_LEFT)) )
 		{
-			playerMe_Ob.move("LEFT");
+			playerMe_Ob.move(Direction_Enum.LEFT);
 		}
 		//y- if(keys[1] == true)
         if( playerMe_Input_StringOb_ArrLst.contains(Integer.valueOf(KeyEvent.VK_RIGHT)) )
         {
-			playerMe_Ob.move("RIGHT");
+			playerMe_Ob.move(Direction_Enum.RIGHT);
 		}
 		//y- if(keys[2] == true)
         if( playerMe_Input_StringOb_ArrLst.contains(Integer.valueOf(KeyEvent.VK_UP)) )
         {
-			playerMe_Ob.move("UP");
+			playerMe_Ob.move(Direction_Enum.UP);
 		}
 		//y- if(keys[3] == true)
         if( playerMe_Input_StringOb_ArrLst.contains(Integer.valueOf(KeyEvent.VK_DOWN)) )
         {
-			playerMe_Ob.move("DOWN");
+			playerMe_Ob.move(Direction_Enum.DOWN);
 		}
         // * IMPORTANT: 1 sec = 1 x 10^9 nano-sec
         // * IMPORTANT: To avoid 'java: integer number too large' error, require 'l' for 64bit otherwise 32bit default
@@ -173,12 +179,14 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 			}
 		}
 
-		missiles_ObsLst.move("UP");
+		//y- missiles_ObsLst.move("UP");
+		missiles_ObsLst.move(Direction_Enum.UP);
 		missiles_ObsLst.draw(graphToBack);
 
 		playerMe_Ob.draw(graphToBack);
 
-		playerBots_ObsLst.move("SIDEWAYS_AND_DOWN");
+		//y- playerBots_ObsLst.move("SIDEWAYS_AND_DOWN");
+		playerBots_ObsLst.move(Direction_Enum.SIDEWAYS_AND_DOWN);
 		playerBots_ObsLst.draw(graphToBack);
 
 		//collision detection

@@ -41,26 +41,31 @@ public class Sprite_Movable_Collidable_Cl extends Sprite_Core_ClAb implements Mo
 		return speed_Fl;
 	}
 
-    public void move(String direction)
+    public void move(Game_Cycle_JPanel_Cl.Direction_Enum direction_Enum_In)
 	{
-	  if(direction.equals("LEFT"))
-	      setX(getX()-getSpeed());
-      else if(direction.equals("RIGHT"))
-	      setX(getX()+getSpeed());
-      else if(direction.equals("UP"))
-	      setY(getY()-getSpeed());
-      else if(direction.equals("DOWN"))
-	      setY(getY()+getSpeed());
-      else if(direction.equals("SIDEWAYS_AND_DOWN"))
-      {
-        if(getX() > (Game_Main_JFrame_Cl.WIDTH  - getWidth()) || getX() < (0 + getWidth()) )
-        {
-            setSpeed(-getSpeed());
-			//y- setY(getY()+25);
-			setY(getY()+(getHeight()*2));
-        }
-        setX(getX()+getSpeed());
-      }
+		//o- if(direction_Enum_In.equals("LEFT"))
+		if(direction_Enum_In == Game_Cycle_JPanel_Cl.Direction_Enum.LEFT)
+		  	setX(getX()-getSpeed());
+	  	//o- else if(direction_Enum_In.equals("RIGHT"))
+		else if(direction_Enum_In == Game_Cycle_JPanel_Cl.Direction_Enum.RIGHT)
+		  	setX(getX()+getSpeed());
+	  	//o- else if(direction_Enum_In.equals("UP"))
+		else if(direction_Enum_In == Game_Cycle_JPanel_Cl.Direction_Enum.UP)
+			setY(getY()-getSpeed());
+	  	//o- else if(direction_Enum_In.equals("DOWN"))
+		else if(direction_Enum_In == Game_Cycle_JPanel_Cl.Direction_Enum.DOWN)
+		  	setY(getY()+getSpeed());
+		//o- else if(direction_Enum_In.equals("SIDEWAYS_AND_DOWN"))
+		else if(direction_Enum_In == Game_Cycle_JPanel_Cl.Direction_Enum.SIDEWAYS_AND_DOWN)
+		{
+			if(getX() > (Game_Main_JFrame_Cl.WIDTH  - getWidth()) || getX() < (0 + getWidth()) )
+			{
+				setSpeed(-getSpeed());
+				//y- setY(getY()+25);
+				setY(getY()+(getHeight()*2));
+			}
+			setX(getX()+getSpeed());
+		}
 	}
 
 	public void draw( Graphics window )
