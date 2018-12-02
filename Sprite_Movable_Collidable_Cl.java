@@ -34,7 +34,7 @@ public class Sprite_Movable_Collidable_Cl extends Sprite_Core_ClAb implements Mo
 
 	public void setSpeed(int s)
 	{
-		speed_Fl =s;
+        speed_Fl =s;
 	}
 	public int getSpeed()
 	{

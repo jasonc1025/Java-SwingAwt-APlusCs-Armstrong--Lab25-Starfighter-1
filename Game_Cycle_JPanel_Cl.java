@@ -26,9 +26,9 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 
 	List<Integer> playerMe_Input_StringOb_ArrLst = new ArrayList<Integer>();
 
-	//o- private PlayerBots_Cl playerBots_Ob;
-	private SpritesList_Movable_Collidable_Cl playerBots_Ob;
-	private Missiles_Cl missiles_Ob;
+	//o- private PlayerBots_Cl playerBots_ObsLst;
+	private SpritesList_Movable_Collidable_Cl playerBots_ObsLst;
+	private SpritesList_Movable_Collidable_Cl missiles_ObsLst;
 
     //	private Long cycle_ProjectileLast_NanoTime = new Long( 0 );
     //	private Long cycle_Last_NanoTime = new Long( 0 );
@@ -55,10 +55,10 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 
 		setBackground(Color.black);
 
-		//o-  playerBots_Ob = new PlayerBots_Cl(100);
-		playerBots_Ob = new SpritesList_Movable_Collidable_Cl(100);
+		//o-  playerBots_ObsLst = new PlayerBots_Cl(100);
+		playerBots_ObsLst = new SpritesList_Movable_Collidable_Cl(100);
 
-		missiles_Ob = new Missiles_Cl();
+		missiles_ObsLst = new SpritesList_Movable_Collidable_Cl();
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -142,14 +142,14 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
         //y- if( (keys[4] == true) && ( gameCycle_Curr_NanoSec - gameCycle_Projectile_Prev_NanoSec > (1.0/gameCycle_Projectile_Per_Sec * Math.pow(10,9)) ) )
         if( ( playerMe_Input_StringOb_ArrLst.contains(Integer.valueOf(KeyEvent.VK_SPACE)) ) && ( gameCycle_Curr_NanoSec - gameCycle_Projectile_Prev_NanoSec > (1.0/gameCycle_Projectile_Per_Sec * Math.pow(10,9)) ) )
 		{
-			//y- missiles_Ob.add(new Sprite_Movable_Collidable_Cl(playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-5, playerMe_Ob.getY(), 10, 10, 5));
+			//y- missiles_ObsLst.add(new Sprite_Movable_Collidable_Cl(playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-5, playerMe_Ob.getY(), 10, 10, 5));
             Sprite_Movable_Collidable_Cl missileTemp = new Sprite_Movable_Collidable_Cl("/images/Circle-Green-20x20.png");
-            //y- missiles_Ob.add(new Sprite_Movable_Collidable_Cl( "/images/Circle-Green-20x20.png",playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-10, playerMe_Ob.getY()-10, 5));
+            //y- missiles_ObsLst.add(new Sprite_Movable_Collidable_Cl( "/images/Circle-Green-20x20.png",playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-10, playerMe_Ob.getY()-10, 5));
             missileTemp.setImageSize(10,10);
             missileTemp.setPos(playerMe_Ob.getX()+ playerMe_Ob.getWidth()/2-(missileTemp.getWidth()/2), playerMe_Ob.getY()-(missileTemp.getHeight()/2));
             missileTemp.setSpeed(5);
-            //y missiles_Ob.add(new Sprite_Movable_Collidable_Cl( "/images/Circle-Green-20x20.png",playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-10, playerMe_Ob.getY()-10, 5));
-            missiles_Ob.add(missileTemp);
+            //y missiles_ObsLst.add(new Sprite_Movable_Collidable_Cl( "/images/Circle-Green-20x20.png",playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-10, playerMe_Ob.getY()-10, 5));
+            missiles_ObsLst.add(missileTemp);
 			//y turn off to allow continuous fire- keys[4] = false;
             gameCycle_Projectile_Prev_NanoSec = gameCycle_Curr_NanoSec;
 
@@ -173,17 +173,17 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 			}
 		}
 
-		missiles_Ob.move();
-		missiles_Ob.draw(graphToBack);
+		missiles_ObsLst.move("UP");
+		missiles_ObsLst.draw(graphToBack);
 
 		playerMe_Ob.draw(graphToBack);
 
-		playerBots_Ob.move();
-		playerBots_Ob.draw(graphToBack);
+		playerBots_ObsLst.move("SIDEWAYS_AND_DOWN");
+		playerBots_ObsLst.draw(graphToBack);
 
 		//collision detection
-		missiles_Ob.cleanEmUp();
-		playerBots_Ob.removeDeadOnes(playerMe_Ob, missiles_Ob.getList());
+		missiles_ObsLst.cleanEmUp();
+		playerBots_ObsLst.removeDeadOnes(playerMe_Ob, missiles_ObsLst.getList());
 
 
 		twoDGraph.drawImage(back, null, 0, 0);

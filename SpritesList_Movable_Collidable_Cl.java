@@ -9,57 +9,63 @@ import java.util.List;
 
 public class SpritesList_Movable_Collidable_Cl
 {
-	//n invalid methods-	private List<Sprite_Core_ClAb> playerBots_ObsLst_Fl;
-	private List<Sprite_Movable_Collidable_Cl> playerBots_ObsLst_Fl;
+	//n invalid methods-	private List<Sprite_Core_ClAb> sprites_ObsLst_Fl;
+	private List<Sprite_Movable_Collidable_Cl> sprites_ObsLst_Fl;
+
+	public SpritesList_Movable_Collidable_Cl()
+	{
+		sprites_ObsLst_Fl = new ArrayList<Sprite_Movable_Collidable_Cl>();
+	}
 
 	public SpritesList_Movable_Collidable_Cl(int size)
 	{
-		playerBots_ObsLst_Fl = new ArrayList<Sprite_Movable_Collidable_Cl>();
+		sprites_ObsLst_Fl = new ArrayList<Sprite_Movable_Collidable_Cl>();
 		int x = 25;
 		int y = 50;
 		for( int i = 0; i < size; i++)
 		{
-            //y- 			playerBots_ObsLst_Fl.add( new Sprite_Movable_Collidable_Cl("/images/alien.jpg", x, y, 35, 35, 1) );
-			//y- playerBots_ObsLst_Fl.add( new Sprite_Movable_Collidable_Cl("/images/alien.jpg", x, y, 100, 100, 1) );
-			playerBots_ObsLst_Fl.add( new Sprite_Movable_Collidable_Cl("/images/ufo.png", x, y, 50, 50, 1) );
+            //y- 			sprites_ObsLst_Fl.add( new Sprite_Movable_Collidable_Cl("/images/alien.jpg", x, y, 35, 35, 1) );
+			//y- sprites_ObsLst_Fl.add( new Sprite_Movable_Collidable_Cl("/images/alien.jpg", x, y, 100, 100, 1) );
+			sprites_ObsLst_Fl.add( new Sprite_Movable_Collidable_Cl("/images/ufo.png", x, y, 50, 50, 1) );
 			if( x > Game_Main_JFrame_Cl.WIDTH - 50)
 			{
 				x = 25;
 				//y- y += 75;
-				y += (playerBots_ObsLst_Fl.get(i).getHeight() * 1);
-				playerBots_ObsLst_Fl.get(i).setPos(x,y);
+				y += (sprites_ObsLst_Fl.get(i).getHeight() * 1);
+				sprites_ObsLst_Fl.get(i).setPos(x,y);
 			}
 			//y- x += 75;
-			x += (playerBots_ObsLst_Fl.get(i).getWidth() * 1);
+			x += (sprites_ObsLst_Fl.get(i).getWidth() * 1);
 		}
 	}
 
-	public void add(Sprite_Movable_Collidable_Cl playerBotObIn)
+	public void add(Sprite_Movable_Collidable_Cl sprite_Ob_In)
 	{
-	   playerBots_ObsLst_Fl.add(playerBotObIn);
+	   sprites_ObsLst_Fl.add(sprite_Ob_In);
 	}
 
 	public void draw( Graphics window )
 	{
-		//n invalid methods-			for( Sprite_Core_ClAb al : playerBots_ObsLst_Fl)
-		for( Sprite_Movable_Collidable_Cl playerBotOb : playerBots_ObsLst_Fl)
-			playerBotOb.draw( window );
+		//n invalid methods-			for( Sprite_Core_ClAb al : sprites_ObsLst_Fl)
+		for( Sprite_Movable_Collidable_Cl sprite_Ob_In : sprites_ObsLst_Fl)
+			sprite_Ob_In.draw( window );
 	}
 
-	public void move()
+	public void move(String direction_Str_In)
 	{
-		//n invalid methods-			for(Sprite_Core_ClAb al : playerBots_ObsLst_Fl)
-		for(Sprite_Movable_Collidable_Cl playerBotOb : playerBots_ObsLst_Fl)
+		//n invalid methods-			for(Sprite_Core_ClAb al : sprites_ObsLst_Fl)
+		for(Sprite_Movable_Collidable_Cl sprite_Ob_In : sprites_ObsLst_Fl)
 		{
-			playerBotOb.move("SIDEWAYS_AND_DOWN");
+			//o- sprite_Ob_In.move("SIDEWAYS_AND_DOWN");
+			sprite_Ob_In.move( direction_Str_In );
 		}
 	}
 
 	public void removeDeadOnes(Sprite_Movable_Collidable_Cl playerMe_Ob_In, List<Sprite_Movable_Collidable_Cl> missiles_ObsLst_In)
 	{
 		//		for(int i = 0; i < missiles_ObsLst_In.size(); i++)
-		//n invalid methods-		Iterator<Sprite_Core_ClAb> playerBots_Iterator = playerBots_ObsLst_Fl.iterator();
-		Iterator<Sprite_Movable_Collidable_Cl> playerBots_Iterator = playerBots_ObsLst_Fl.iterator();
+		//n invalid methods-		Iterator<Sprite_Core_ClAb> playerBots_Iterator = sprites_ObsLst_Fl.iterator();
+		Iterator<Sprite_Movable_Collidable_Cl> playerBots_Iterator = sprites_ObsLst_Fl.iterator();
 		while( playerBots_Iterator.hasNext() )
 		{
 			//n invalid methods-			Sprite_Core_ClAb playerBot_Ob = playerBots_Iterator.next();
@@ -73,12 +79,12 @@ public class SpritesList_Movable_Collidable_Cl
 			}
 			else {
 
-//		    	for(int j = 0; j< playerBots_ObsLst_Fl.size(); j++)
+//		    	for(int j = 0; j< sprites_ObsLst_Fl.size(); j++)
 				Iterator<Sprite_Movable_Collidable_Cl> missile_Iterator = missiles_ObsLst_In.iterator();
 				while (missile_Iterator.hasNext()) {
 					Sprite_Movable_Collidable_Cl missile_Ob = missile_Iterator.next();
 
-//		   		Sprite_Movable_Collidable_Cl playerBot_Ob = playerBots_ObsLst_Fl.get(j);
+//		   		Sprite_Movable_Collidable_Cl playerBot_Ob = sprites_ObsLst_Fl.get(j);
 					//y-			   if ((missile_Ob.getX() >= playerBot_Ob.getX() && missile_Ob.getX() <= playerBot_Ob.getX()+60) ||
 					//					   (missile_Ob.getX()+10 >= playerBot_Ob.getX() && missile_Ob.getX()+10 <= playerBot_Ob.getX()+60))
 					//				   if ((missile_Ob.getY() >= playerBot_Ob.getY() && missile_Ob.getY() <= playerBot_Ob.getY()+60) ||
@@ -90,7 +96,7 @@ public class SpritesList_Movable_Collidable_Cl
 					//					if ((missile_Ob.getY() >= playerBot_Ob.getY() && missile_Ob.getY() <= playerBot_Ob.getY() + playerBot_Ob.getHeight()) ||
 					//							(missile_Ob.getY() + missile_Ob.getHeight() >= playerBot_Ob.getY() && missile_Ob.getY() + missile_Ob.getHeight() <= playerBot_Ob.getY() + playerBot_Ob.getHeight()))
 					//					{
-					//						playerBots_ObsLst_Fl.remove(j);
+					//						sprites_ObsLst_Fl.remove(j);
 					//						missiles_ObsLst_In.remove(i);
 					//						break;
 					//					}
@@ -102,14 +108,14 @@ public class SpritesList_Movable_Collidable_Cl
 					//				    ((missile_Ob.getX() + missile_Ob.getWidth()  >= playerBot_Ob.getX() && missile_Ob.getX() + missile_Ob.getWidth()  <= playerBot_Ob.getX() + playerBot_Ob.getWidth()  ) &&
 					//					 (missile_Ob.getY() + missile_Ob.getHeight() >= playerBot_Ob.getY() && missile_Ob.getY() + missile_Ob.getHeight() <= playerBot_Ob.getY() + playerBot_Ob.getHeight() )))
 					//					{
-					//						playerBots_ObsLst_Fl.remove(j);
+					//						sprites_ObsLst_Fl.remove(j);
 					//						missiles_ObsLst_In.remove(i);
 					//						break;
 					//					}
 
 //				if( missile_Ob.colliding( playerBot_Ob ))
 					if (playerBot_Ob.colliding(missile_Ob)) {
-//					playerBots_ObsLst_Fl.remove();
+//					sprites_ObsLst_Fl.remove();
 						playerBots_Iterator.remove();
 //					missiles_ObsLst_In.remove(i);
 						missile_Iterator.remove();
@@ -121,8 +127,23 @@ public class SpritesList_Movable_Collidable_Cl
 		}
 	}
 
+	public void cleanEmUp()
+	{
+		for(int i = 0; i< sprites_ObsLst_Fl.size(); i++)
+		{
+//			if(sprites_ObsLst_Fl.get(i).getX()<-20)
+			if(sprites_ObsLst_Fl.get(i).getY() < 0)
+				sprites_ObsLst_Fl.remove(i);
+		}
+	}
+
+	public List<Sprite_Movable_Collidable_Cl> getList()
+	{
+		return sprites_ObsLst_Fl;
+	}
+
 	public String toString()
 	{
-		return "" + playerBots_ObsLst_Fl;
+		return "" + sprites_ObsLst_Fl;
 	}
 }
