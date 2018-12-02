@@ -162,8 +162,8 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 			try {
 				// Open an audio input stream.
 				//o- URL url = this.getClass().getClassLoader().getResource("gameover.wav");
-                //n- URL url = this.getClass().getClassLoader().getResource("/images/Laser-SoundBible-602495617.wav");
-                URL url = this.getClass().getClassLoader().getResource("Laser-SoundBible-602495617.wav");
+                //n- URL url = this.getClass().getClassLoader().getResource("/images/Sound_Laser_SoundBible_602495617.wav");
+                URL url = this.getClass().getClassLoader().getResource("Sound_Laser_SoundBible_602495617.wav");
 				AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
 				// Get a sound clip resource.
 				Clip clip = AudioSystem.getClip();
@@ -190,8 +190,14 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 		playerBots_ObsLst.draw(graphToBack);
 
 		//collision detection
-		missiles_ObsLst.cleanEmUp();
-		playerBots_ObsLst.removeDeadOnes(playerMe_Ob, missiles_ObsLst.getList());
+		missiles_ObsLst.boundaryCheckAndClean();
+		playerBots_ObsLst.boundaryCheckAndClean();
+
+		//o- playerBots_ObsLst.removeDeadOnes(playerMe_Ob, missiles_ObsLst.getList());
+//		playerBots_ObsLst.collisionCheckAndClean(playerMe_Ob,-1);
+//		playerBots_ObsLst.collisionCheckAndClean(missiles_ObsLst.getList(),+1);
+		playerBots_ObsLst.collisionCheckAndClean(playerMe_Ob,-1);
+		playerBots_ObsLst.collisionCheckAndClean(missiles_ObsLst.getList(),+1);
 
 
 		twoDGraph.drawImage(back, null, 0, 0);

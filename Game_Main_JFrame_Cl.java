@@ -15,6 +15,8 @@ public class Game_Main_JFrame_Cl extends JFrame
 	//y- public static int HEIGHT = 1300;
 	public static int HEIGHT = 800;
 
+	public static int BORDER_SAFETY_MARGIN = 50;
+
 	public static int SCORE = 0;
 
 	public Game_Main_JFrame_Cl()

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Sprites_CoreExtLst_Movable_Collidable_Cl
 {
-	//n invalid methods-	private List<Sprite_Core_ClAb> sprites_ObsLst_Fl;
+	//n invalid methods-	privatea List<Sprite_Core_ClAb> sprites_ObsLst_Fl;
 	private List<Sprite_CoreExt_Movable_Collidable_Cl> sprites_ObsLst_Fl;
 
 	public Sprites_CoreExtLst_Movable_Collidable_Cl()
@@ -20,16 +20,18 @@ public class Sprites_CoreExtLst_Movable_Collidable_Cl
 	public Sprites_CoreExtLst_Movable_Collidable_Cl(int size)
 	{
 		sprites_ObsLst_Fl = new ArrayList<Sprite_CoreExt_Movable_Collidable_Cl>();
-		int x = 25;
-		int y = 50;
+		// * x & y need to be greater than its own 'width + origin' to not trigger a premature speed reversal
+		int x = Game_Main_JFrame_Cl.BORDER_SAFETY_MARGIN;
+		int y = Game_Main_JFrame_Cl.BORDER_SAFETY_MARGIN;
 		for( int i = 0; i < size; i++)
 		{
             //y- 			sprites_ObsLst_Fl.add( new Sprite_CoreExt_Movable_Collidable_Cl("/images/alien.jpg", x, y, 35, 35, 1) );
 			//y- sprites_ObsLst_Fl.add( new Sprite_CoreExt_Movable_Collidable_Cl("/images/alien.jpg", x, y, 100, 100, 1) );
 			sprites_ObsLst_Fl.add( new Sprite_CoreExt_Movable_Collidable_Cl("/images/ufo.png", x, y, 50, 50, 1) );
-			if( x > Game_Main_JFrame_Cl.WIDTH - 50)
+			// * BUG FIX: Cannot be '>' or will cause premature boundary-crossover and sprite will inadvertently go off screen
+			if( x >= Game_Main_JFrame_Cl.WIDTH - Game_Main_JFrame_Cl.BORDER_SAFETY_MARGIN)
 			{
-				x = 25;
+				x = Game_Main_JFrame_Cl.BORDER_SAFETY_MARGIN;
 				//y- y += 75;
 				y += (sprites_ObsLst_Fl.get(i).getHeight() * 1);
 				sprites_ObsLst_Fl.get(i).setPos(x,y);
@@ -53,87 +55,59 @@ public class Sprites_CoreExtLst_Movable_Collidable_Cl
 
 	public void move( Game_Cycle_JPanel_Cl.Direction_Enum direction_Enum_In )
 	{
-		//n invalid methods-			for(Sprite_Core_ClAb al : sprites_ObsLst_Fl)
 		for(Sprite_CoreExt_Movable_Collidable_Cl sprite_Ob_In : sprites_ObsLst_Fl)
 		{
-			//o- sprite_Ob_In.move("SIDEWAYS_AND_DOWN");
 			sprite_Ob_In.move( direction_Enum_In );
 		}
 	}
 
-	public void removeDeadOnes(Sprite_CoreExt_Movable_Collidable_Cl playerMe_Ob_In, List<Sprite_CoreExt_Movable_Collidable_Cl> missiles_ObsLst_In)
+	public void collisionCheckAndClean(Sprite_CoreExt_Movable_Collidable_Cl playerMe_Ob_In, int scoreAdjust_In)
 	{
-		//		for(int i = 0; i < missiles_ObsLst_In.size(); i++)
-		//n invalid methods-		Iterator<Sprite_Core_ClAb> playerBots_Iterator = sprites_ObsLst_Fl.iterator();
 		Iterator<Sprite_CoreExt_Movable_Collidable_Cl> playerBots_Iterator = sprites_ObsLst_Fl.iterator();
 		while( playerBots_Iterator.hasNext() )
 		{
-			//n invalid methods-			Sprite_Core_ClAb playerBot_Ob = playerBots_Iterator.next();
 			Sprite_CoreExt_Movable_Collidable_Cl playerBot_Ob = playerBots_Iterator.next();
 
-			//			Sprite_CoreExt_Movable_Collidable_Cl spriteProjectileOb = missiles_ObsLst_In.get(i);
 			if( playerBot_Ob.colliding( playerMe_Ob_In ))
 			{
 				playerBots_Iterator.remove();
-				Game_Main_JFrame_Cl.SCORE--;
+				Game_Main_JFrame_Cl.SCORE += scoreAdjust_In;
 			}
-			else {
+		}
+	}
 
-//		    	for(int j = 0; j< sprites_ObsLst_Fl.size(); j++)
-				Iterator<Sprite_CoreExt_Movable_Collidable_Cl> missile_Iterator = missiles_ObsLst_In.iterator();
-				while (missile_Iterator.hasNext()) {
-					Sprite_CoreExt_Movable_Collidable_Cl missile_Ob = missile_Iterator.next();
+	public void collisionCheckAndClean(List<Sprite_CoreExt_Movable_Collidable_Cl> missiles_ObsLst_In, int scoreAdjust_In)
+	{
+		Iterator<Sprite_CoreExt_Movable_Collidable_Cl> playerBots_Iterator = sprites_ObsLst_Fl.iterator();
+		while( playerBots_Iterator.hasNext() )
+		{
+			Sprite_CoreExt_Movable_Collidable_Cl playerBot_Ob = playerBots_Iterator.next();
 
-//		   		Sprite_CoreExt_Movable_Collidable_Cl playerBot_Ob = sprites_ObsLst_Fl.get(j);
-					//y-			   if ((missile_Ob.getX() >= playerBot_Ob.getX() && missile_Ob.getX() <= playerBot_Ob.getX()+60) ||
-					//					   (missile_Ob.getX()+10 >= playerBot_Ob.getX() && missile_Ob.getX()+10 <= playerBot_Ob.getX()+60))
-					//				   if ((missile_Ob.getY() >= playerBot_Ob.getY() && missile_Ob.getY() <= playerBot_Ob.getY()+60) ||
-					//						   (missile_Ob.getY()+10 >= playerBot_Ob.getY() && missile_Ob.getY()+10 <= playerBot_Ob.getY()+60))
+			Iterator<Sprite_CoreExt_Movable_Collidable_Cl> missile_Iterator = missiles_ObsLst_In.iterator();
+			while (missile_Iterator.hasNext()) {
+				Sprite_CoreExt_Movable_Collidable_Cl missile_Ob = missile_Iterator.next();
 
-					//y-				if ((missile_Ob.getX() >= playerBot_Ob.getX() && missile_Ob.getX() <= playerBot_Ob.getX()+playerBot_Ob.getWidth()) ||
-					//						(missile_Ob.getX()+missile_Ob.getWidth() >= playerBot_Ob.getX() && missile_Ob.getX()+missile_Ob.getWidth() <= playerBot_Ob.getX()+playerBot_Ob.getWidth()))
-					//				{
-					//					if ((missile_Ob.getY() >= playerBot_Ob.getY() && missile_Ob.getY() <= playerBot_Ob.getY() + playerBot_Ob.getHeight()) ||
-					//							(missile_Ob.getY() + missile_Ob.getHeight() >= playerBot_Ob.getY() && missile_Ob.getY() + missile_Ob.getHeight() <= playerBot_Ob.getY() + playerBot_Ob.getHeight()))
-					//					{
-					//						sprites_ObsLst_Fl.remove(j);
-					//						missiles_ObsLst_In.remove(i);
-					//						break;
-					//					}
-					//				}
-
-					//y-				if (((missile_Ob.getX() >= playerBot_Ob.getX() && missile_Ob.getX() <= playerBot_Ob.getX() + playerBot_Ob.getWidth()  )  &&
-					//				     (missile_Ob.getY() >= playerBot_Ob.getY() && missile_Ob.getY() <= playerBot_Ob.getY() + playerBot_Ob.getHeight()))
-					//					||
-					//				    ((missile_Ob.getX() + missile_Ob.getWidth()  >= playerBot_Ob.getX() && missile_Ob.getX() + missile_Ob.getWidth()  <= playerBot_Ob.getX() + playerBot_Ob.getWidth()  ) &&
-					//					 (missile_Ob.getY() + missile_Ob.getHeight() >= playerBot_Ob.getY() && missile_Ob.getY() + missile_Ob.getHeight() <= playerBot_Ob.getY() + playerBot_Ob.getHeight() )))
-					//					{
-					//						sprites_ObsLst_Fl.remove(j);
-					//						missiles_ObsLst_In.remove(i);
-					//						break;
-					//					}
-
-//				if( missile_Ob.colliding( playerBot_Ob ))
-					if (playerBot_Ob.colliding(missile_Ob)) {
-//					sprites_ObsLst_Fl.remove();
-						playerBots_Iterator.remove();
-//					missiles_ObsLst_In.remove(i);
-						missile_Iterator.remove();
-						Game_Main_JFrame_Cl.SCORE++;
-						break;
-					}
+				if (playerBot_Ob.colliding(missile_Ob)) {
+					playerBots_Iterator.remove();
+					missile_Iterator.remove();
+					Game_Main_JFrame_Cl.SCORE += scoreAdjust_In;
+					break;
 				}
 			}
 		}
 	}
 
-	public void cleanEmUp()
+	public void boundaryCheckAndClean()
 	{
 		for(int i = 0; i< sprites_ObsLst_Fl.size(); i++)
 		{
 //			if(sprites_ObsLst_Fl.get(i).getX()<-20)
-			if(sprites_ObsLst_Fl.get(i).getY() < 0)
-				sprites_ObsLst_Fl.remove(i);
+			if( (sprites_ObsLst_Fl.get(i).getY() < (0 + Game_Main_JFrame_Cl.BORDER_SAFETY_MARGIN) ) ||
+                (sprites_ObsLst_Fl.get(i).getY() > (Game_Main_JFrame_Cl.HEIGHT - Game_Main_JFrame_Cl.BORDER_SAFETY_MARGIN)) ) {
+                sprites_ObsLst_Fl.remove(i);
+                //b Seems to cause score start at -4: Game_Main_JFrame_Cl.SCORE--;
+                Game_Main_JFrame_Cl.SCORE--;
+            }
 		}
 	}
 

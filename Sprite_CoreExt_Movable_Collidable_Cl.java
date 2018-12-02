@@ -58,11 +58,13 @@ public class Sprite_CoreExt_Movable_Collidable_Cl extends Sprite_Core_ClAb imple
 		//o- else if(direction_Enum_In.equals("SIDEWAYS_AND_DOWN"))
 		else if(direction_Enum_In == Game_Cycle_JPanel_Cl.Direction_Enum.SIDEWAYS_AND_DOWN)
 		{
-			if(getX() > (Game_Main_JFrame_Cl.WIDTH  - getWidth()) || getX() < (0 + getWidth()) )
+			//o- if(getX() > (Game_Main_JFrame_Cl.WIDTH  - getWidth()) || getX() < (0 + getWidth()) )
+			if(getX() > (Game_Main_JFrame_Cl.WIDTH  - Game_Main_JFrame_Cl.BORDER_SAFETY_MARGIN) || getX() < (0 + Game_Main_JFrame_Cl.BORDER_SAFETY_MARGIN) )
 			{
 				setSpeed(-getSpeed());
 				//y- setY(getY()+25);
-				setY(getY()+(getHeight()*2));
+				// * only drop by 1 row for smoother transition
+				setY(getY()+(getHeight()*1));
 			}
 			setX(getX()+getSpeed());
 		}
@@ -73,27 +75,10 @@ public class Sprite_CoreExt_Movable_Collidable_Cl extends Sprite_Core_ClAb imple
    		window.drawImage(getImage(),getX(),getY(),getWidth(),getHeight(),null);
 	}
 
-    //y- public boolean colliding( Sprite_CoreExt_Movable_Collidable_Cl spriteOtherIn )
-    //n- public boolean colliding( Sprite_Core_ClAb spriteOtherIn )
     public boolean colliding( Sprite_CoreExt_Movable_Collidable_Cl spriteOtherIn )
     {
         boolean colliding_Boo = false;  // * default to false
 
-//y-        if ((this.getX() >= spriteOtherObIn.getX() && this.getX() <= spriteOtherObIn.getX()+spriteOtherObIn.getWidth()) ||
-//            (this.getX()+this.getWidth() >= spriteOtherObIn.getX() && this.getX()+this.getWidth() <= spriteOtherObIn.getX()+spriteOtherObIn.getWidth()))
-//        {
-//            if ((this.getY() >= spriteOtherObIn.getY() && this.getY() <= spriteOtherObIn.getY() + spriteOtherObIn.getHeight()) ||
-//                (this.getY() + this.getHeight() >= spriteOtherObIn.getY() && this.getY() + this.getHeight() <= spriteOtherObIn.getY() + spriteOtherObIn.getHeight()))
-//        }
-
-//y-        if (((this.getX() >= spriteOtherIn.getX() && this.getX() <= spriteOtherIn.getX() + spriteOtherIn.getWidth()  )  &&
-//                (this.getY() >= spriteOtherIn.getY() && this.getY() <= spriteOtherIn.getY() + spriteOtherIn.getHeight()))
-//                ||
-//                ((this.getX() + this.getWidth()  >= spriteOtherIn.getX() && this.getX() + this.getWidth()  <= spriteOtherIn.getX() + spriteOtherIn.getWidth()  ) &&
-//                        (this.getY() + this.getHeight() >= spriteOtherIn.getY() && this.getY() + this.getHeight() <= spriteOtherIn.getY() + spriteOtherIn.getHeight() )))
-        // * (Sprite-01-XYMax >= Sprite-02-XYMin) && (Sprite-01-XYMin <= Sprite-02-XYMax)
-        // * ...in other words...
-        // * (this-XYMax >= spriteOtherIn-XYMin) && (this-XYMin <= spriteOtherIn-XYMax)
         if (
             ((this.getX() + this.getWidth() >= spriteOtherIn.getX()) && (this.getY() + this.getHeight() >= spriteOtherIn.getY())) &&
             ((this.getX() <= spriteOtherIn.getX() + spriteOtherIn.getWidth()) && (this.getY() <= spriteOtherIn.getY() + spriteOtherIn.getHeight()))
