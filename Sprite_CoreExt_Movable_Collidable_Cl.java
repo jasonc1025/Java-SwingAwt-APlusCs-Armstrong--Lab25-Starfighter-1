@@ -4,29 +4,29 @@
 
 import java.awt.Graphics;
 
-public class Sprite_Movable_Collidable_Cl extends Sprite_Core_ClAb implements Movable_If, Collidable_If {
+public class Sprite_CoreExt_Movable_Collidable_Cl extends Sprite_Core_ClAb implements Movable_If, Collidable_If {
 
-	public Sprite_Movable_Collidable_Cl()
+	public Sprite_CoreExt_Movable_Collidable_Cl()
 	{
 		this("/images/Circle-Green-20x20.png",0,0,0);
 	}
 
-	public Sprite_Movable_Collidable_Cl(String imageFileIn)
+	public Sprite_CoreExt_Movable_Collidable_Cl(String imageFileIn)
 	{
 		this(imageFileIn, 0, 0, 0);
 	}
 
-	public Sprite_Movable_Collidable_Cl(int x, int y)
+	public Sprite_CoreExt_Movable_Collidable_Cl(int x, int y)
 	{
 		this("/images/Circle-Green-20x20.png", x, y, 0);
 	}
 
-	public Sprite_Movable_Collidable_Cl(String imageFileIn, int x, int y, int s)
+	public Sprite_CoreExt_Movable_Collidable_Cl(String imageFileIn, int x, int y, int s)
 	{
 		super(imageFileIn, x, y, s);
 		setSpeed(s);
 	}
-	public Sprite_Movable_Collidable_Cl(String imageFileIn, int x, int y, int w, int h, int s)
+	public Sprite_CoreExt_Movable_Collidable_Cl(String imageFileIn, int x, int y, int w, int h, int s)
 	{
 		super(imageFileIn, x, y, w, h, s);
 		setSpeed(s);
@@ -73,9 +73,9 @@ public class Sprite_Movable_Collidable_Cl extends Sprite_Core_ClAb implements Mo
    		window.drawImage(getImage(),getX(),getY(),getWidth(),getHeight(),null);
 	}
 
-    //y- public boolean colliding( Sprite_Movable_Collidable_Cl spriteOtherIn )
+    //y- public boolean colliding( Sprite_CoreExt_Movable_Collidable_Cl spriteOtherIn )
     //n- public boolean colliding( Sprite_Core_ClAb spriteOtherIn )
-    public boolean colliding( Sprite_Movable_Collidable_Cl spriteOtherIn )
+    public boolean colliding( Sprite_CoreExt_Movable_Collidable_Cl spriteOtherIn )
     {
         boolean colliding_Boo = false;  // * default to false
 

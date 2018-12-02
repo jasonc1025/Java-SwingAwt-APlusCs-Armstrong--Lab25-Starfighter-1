@@ -24,17 +24,17 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 		UP, DOWN, LEFT, RIGHT, SIDEWAYS_AND_DOWN;
 	}
 
-    //y- too fast and choppy- 		playerMe_Ob = new Sprite_Movable_Collidable_Cl(310,450,5);
-    //y- 	private Sprite_Movable_Collidable_Cl playerMe_Ob = new Sprite_Movable_Collidable_Cl(310,450,1);
+    //y- too fast and choppy- 		playerMe_Ob = new Sprite_CoreExt_Movable_Collidable_Cl(310,450,5);
+    //y- 	private Sprite_CoreExt_Movable_Collidable_Cl playerMe_Ob = new Sprite_CoreExt_Movable_Collidable_Cl(310,450,1);
     // * Speed was '1'
-	//y- private Sprite_Movable_Collidable_Cl playerMe_Ob = new Sprite_Movable_Collidable_Cl( "/images/ship.jpg", (int)(Game_Main_JFrame_Cl.WIDTH * 0.50), (int)(Game_Main_JFrame_Cl.HEIGHT * 0.80),100,100,2);
-	private Sprite_Movable_Collidable_Cl playerMe_Ob = new Sprite_Movable_Collidable_Cl( "/images/CalvinHobbes-Saucer.png", (int)(Game_Main_JFrame_Cl.WIDTH * 0.50), (int)(Game_Main_JFrame_Cl.HEIGHT * 0.80),100,100,2);
+	//y- private Sprite_CoreExt_Movable_Collidable_Cl playerMe_Ob = new Sprite_CoreExt_Movable_Collidable_Cl( "/images/ship.jpg", (int)(Game_Main_JFrame_Cl.WIDTH * 0.50), (int)(Game_Main_JFrame_Cl.HEIGHT * 0.80),100,100,2);
+	private Sprite_CoreExt_Movable_Collidable_Cl playerMe_Ob = new Sprite_CoreExt_Movable_Collidable_Cl( "/images/CalvinHobbes-Saucer.png", (int)(Game_Main_JFrame_Cl.WIDTH * 0.50), (int)(Game_Main_JFrame_Cl.HEIGHT * 0.80),100,100,2);
 
 	List<Integer> playerMe_Input_StringOb_ArrLst = new ArrayList<Integer>();
 
 	//o- private PlayerBots_Cl playerBots_ObsLst;
-	private SpritesList_Movable_Collidable_Cl playerBots_ObsLst;
-	private SpritesList_Movable_Collidable_Cl missiles_ObsLst;
+	private Sprites_CoreExtLst_Movable_Collidable_Cl playerBots_ObsLst;
+	private Sprites_CoreExtLst_Movable_Collidable_Cl missiles_ObsLst;
 
     //	private Long cycle_ProjectileLast_NanoTime = new Long( 0 );
     //	private Long cycle_Last_NanoTime = new Long( 0 );
@@ -62,9 +62,9 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
 		setBackground(Color.black);
 
 		//o-  playerBots_ObsLst = new PlayerBots_Cl(100);
-		playerBots_ObsLst = new SpritesList_Movable_Collidable_Cl(100);
+		playerBots_ObsLst = new Sprites_CoreExtLst_Movable_Collidable_Cl(100);
 
-		missiles_ObsLst = new SpritesList_Movable_Collidable_Cl();
+		missiles_ObsLst = new Sprites_CoreExtLst_Movable_Collidable_Cl();
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -148,13 +148,13 @@ public class Game_Cycle_JPanel_Cl extends JPanel implements KeyListener, Runnabl
         //y- if( (keys[4] == true) && ( gameCycle_Curr_NanoSec - gameCycle_Projectile_Prev_NanoSec > (1.0/gameCycle_Projectile_Per_Sec * Math.pow(10,9)) ) )
         if( ( playerMe_Input_StringOb_ArrLst.contains(Integer.valueOf(KeyEvent.VK_SPACE)) ) && ( gameCycle_Curr_NanoSec - gameCycle_Projectile_Prev_NanoSec > (1.0/gameCycle_Projectile_Per_Sec * Math.pow(10,9)) ) )
 		{
-			//y- missiles_ObsLst.add(new Sprite_Movable_Collidable_Cl(playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-5, playerMe_Ob.getY(), 10, 10, 5));
-            Sprite_Movable_Collidable_Cl missileTemp = new Sprite_Movable_Collidable_Cl("/images/Circle-Green-20x20.png");
-            //y- missiles_ObsLst.add(new Sprite_Movable_Collidable_Cl( "/images/Circle-Green-20x20.png",playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-10, playerMe_Ob.getY()-10, 5));
+			//y- missiles_ObsLst.add(new Sprite_CoreExt_Movable_Collidable_Cl(playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-5, playerMe_Ob.getY(), 10, 10, 5));
+            Sprite_CoreExt_Movable_Collidable_Cl missileTemp = new Sprite_CoreExt_Movable_Collidable_Cl("/images/Circle-Green-20x20.png");
+            //y- missiles_ObsLst.add(new Sprite_CoreExt_Movable_Collidable_Cl( "/images/Circle-Green-20x20.png",playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-10, playerMe_Ob.getY()-10, 5));
             missileTemp.setImageSize(10,10);
             missileTemp.setPos(playerMe_Ob.getX()+ playerMe_Ob.getWidth()/2-(missileTemp.getWidth()/2), playerMe_Ob.getY()-(missileTemp.getHeight()/2));
             missileTemp.setSpeed(5);
-            //y missiles_ObsLst.add(new Sprite_Movable_Collidable_Cl( "/images/Circle-Green-20x20.png",playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-10, playerMe_Ob.getY()-10, 5));
+            //y missiles_ObsLst.add(new Sprite_CoreExt_Movable_Collidable_Cl( "/images/Circle-Green-20x20.png",playerMe_Ob.getX()+playerMe_Ob.getWidth()/2-10, playerMe_Ob.getY()-10, 5));
             missiles_ObsLst.add(missileTemp);
 			//y turn off to allow continuous fire- keys[4] = false;
             gameCycle_Projectile_Prev_NanoSec = gameCycle_Curr_NanoSec;
