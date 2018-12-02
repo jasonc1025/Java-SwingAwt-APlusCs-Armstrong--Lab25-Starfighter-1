@@ -2,7 +2,7 @@
 //www.apluscompsci.com
 //Name -
 
-public interface Movable_If
+public interface Option_Movable_If
 {
     //n int speed_Fl = 0;
 

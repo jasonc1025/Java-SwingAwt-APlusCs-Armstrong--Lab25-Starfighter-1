@@ -4,7 +4,7 @@
 
 import java.awt.Graphics;
 
-public class Sprite_CoreExt_Movable_Collidable_Cl extends Sprite_Core_ClAb implements Movable_If, Collidable_If {
+public class Sprite_CoreExt_Movable_Collidable_Cl extends Sprite_Core_ClAb implements Option_Movable_If, Option_Collidable_If {
 
 	public Sprite_CoreExt_Movable_Collidable_Cl()
 	{
